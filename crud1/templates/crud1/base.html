@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>my crud project</title>
+    
+    </head>
+    <body>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+        {{fm.as_p}}
+        <input type="submit" value="SAVE">
+        </form>
+
+
+        <h2>Student Table</h2>
+        <table border="2px solid green" bgcolor="orange">
+  <tr>
+    <th>Name</th>
+    <th>age</th>
+    <th>email</th>
+    <th>password</th>
+    <th>update</th>
+    <th>delete</th>
+  </tr>
+
+
+
+        {% for i in dat %}
+        <tr>
+
+      <td>{{i.name}}</td>
+      <td>{{i.age}}</td>
+       <td>{{i.email}}</td>
+       <td>{{i.password}}</td>
+
+       <td> <a href="{% url 'update' i.id %}">Update Data</a></td>
+       <td> <form action="{% url 'delete' i.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Data">
+       </form>
+    </td>
+
+
+        </tr>
+          {% endfor %}
+        
+        </table>
+        
+    </body>
+</html>
